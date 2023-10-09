@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide tab content by default */
+.tab-content.hidden {
+  display: none;
+}
+
+/* Show active tab content */
+.tab-active .tab-content {
+  display: block;
+}
