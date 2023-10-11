@@ -30,7 +30,7 @@ class BookmarkController extends Controller
      * Edit a Internal Book Mark
      */
     public function update(Request $request, $id){
-        //validate the code
+        //validate the code : https://laravel.com/docs/10.x/validation
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
@@ -63,7 +63,7 @@ class BookmarkController extends Controller
      * Store new bookmark
      */
     public function store(Request $request){
-        //validate the code
+        //validate the code : https://laravel.com/docs/10.x/validation
         $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
@@ -78,14 +78,14 @@ class BookmarkController extends Controller
             'url' => $request->input('url'),
             'description' => $request->input('description'),
             'thumbnail' => $request->input('thumbnail'),
-            'user_id' => auth()->user()->id, // Assuming you're using authentication
+            'user_id' => auth()->user()->id, // Assuming you're using authentication || Auth only used when your login 
         ]);
 
         // Save the bookmark to the database
         $bookmark->save();
 
         //redirect to main page with the success update
-        return redirect()->route('dashboard')->with('success', 'Bookmark updated successfully');
+        return redirect()->route('dashboard')->with('success', 'Bookmark created successfully');
     }
 
     /**
