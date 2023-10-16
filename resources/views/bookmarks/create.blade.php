@@ -42,9 +42,9 @@
                             <div class="mb-4">
                                 <label for="tags" class="block text-gray-700 font-semibold mb-2">Tags</label>
                                <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" name="tags" id="tags">
-                                    <option value="Coding">Coding</option>
-                                    <option value="Ideas">Ideas</option>
-                                    <option value="Other">Other</option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag->name}}">{{$tag->name}}</option>
+                                    @endforeach
                                </select>
                             </div>
                             <div class="mb-4">

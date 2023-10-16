@@ -31,15 +31,15 @@
         <label for="tags" class="block text-gray-700 font-semibold mb-2">Tags</label>
         <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" name="tags" id="tags">
         @if(count($bookmark->tags)  > 1)
-            @foreach($bookmark->tags as $tags)
-                <option value="Coding" {{$tags->name == "Coding" ?  'selected' : '' }}>Coding</option>
-                <option value="Ideas"  {{$tags->name == "Ideas" ?  'selected' : '' }}>Ideas</option>
-                <option value="Other"  {{$tags->name == "Other" ?  'selected' : '' }}>Other</option>
+            @foreach($alltags as $tag) 
+                @foreach($bookmark->tags as $tags)
+                    <option value="{{$tag->name}}" {{$tags->name == $tag->name ?  'selected' : '' }}>Coding</option>
+                @endforeach
             @endforeach
         @else
-            <option value="Coding">Coding</option>
-            <option value="Ideas">Ideas</option>
-            <option value="Other">Other</option>
+            @foreach($alltags as $tag)
+                <option value="{{$tag->name}}">{{$tag->name}}</option>
+            @endforeach
         @endif
         </select>
     </div>

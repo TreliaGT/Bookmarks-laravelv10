@@ -60,7 +60,7 @@
                             </div>
                             <!-- Tab 2 content -->
                             <div class="tab-content hidden">
-                                @include('bookmarks.edit')
+                                @include('bookmarks.edit' ,  $alltags)
                             </div>
                             <!-- Tab 3 content -->
                             <div class="tab-content hidden">

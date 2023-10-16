@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Bookmark;
+use Spatie\Tags\Tag;
 
 class BookmarkController extends Controller
 {
@@ -19,11 +20,29 @@ class BookmarkController extends Controller
     }
 
     /**
+     * Tags page
+     */
+    public function tag($tag){
+        $bookmarks = Bookmark::withAllTags([ $tag ])->get();
+        return view('bookmarks.tag', compact('bookmarks', 'tag'));
+    }
+
+    /**
+     * View all Page
+     */
+    public function viewAll(){
+        $bookmarks = Bookmark::paginate(20);
+        return view('bookmarks.viewAll', compact('bookmarks'));
+    }
+
+
+    /**
      * Show Internal Bookmark
      */
     public function show($slug){
+        $alltags = Tag::all();
         $bookmark = Bookmark::where('slug' , $slug)->first();
-        return view('bookmarks.show', compact('bookmark'));
+        return view('bookmarks.show', compact('bookmark' , 'alltags'));
     }
 
     /**
@@ -65,7 +84,8 @@ class BookmarkController extends Controller
      * Show Create
      */
     public function create(){
-        return view('bookmarks.create');
+        $tags = Tag::all();
+        return view('bookmarks.create', compact('tags'));
     }
 
     /**
@@ -118,7 +138,7 @@ class BookmarkController extends Controller
     public function destroy($id) {
         // Find the bookmark by its ID
         $bookmark = Bookmark::findOrFail($id);
-        
+
         if($bookmark->tags){
             foreach($bookmark->tags as $tag){
                 $bookmark->detachTag($tag->name);

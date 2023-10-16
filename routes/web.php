@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookmark/{id}/edit',[BookmarkController::class, 'update'])->name('bookmark.edit');
     Route::post('/bookmark/{id}/destroy',[BookmarkController::class, 'destroy'])->name('bookmark.destroy');
     Route::get('/bookmarks/search', [BookmarkController::class, 'search'])->name('bookmarks.search');
+
+    //other pages
+    Route::get('/bookmarks/tags/{name}', [BookmarkController::class, 'tag'])->name('bookmarks.tag');
+    Route::get('/bookmarks/all', [BookmarkController::class, 'viewAll'])->name('bookmarks.viewAll');
+
+    //Tags
+    Route::get('/tags', [TagsController::class, 'index'])->name('tags');
 
 });
 
