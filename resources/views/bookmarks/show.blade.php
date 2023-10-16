@@ -10,6 +10,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+                        <strong class="font-bold">Success!</strong>
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
                 <div class="bg-gray-100 p-4">
                         <ul class="flex tabs">
                             <li class="mr-2">
@@ -53,7 +59,7 @@
                                 <h2>Delete this Bookmark</h2>
                                 <form action="{{ route('bookmark.destroy', $bookmark->id) }}" method="POST">
                                     @csrf
-                                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" type="submit" class="btn btn-danger">Delete</button>
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" type="submit">Delete</button>
                                 </form>
 
                             </div>

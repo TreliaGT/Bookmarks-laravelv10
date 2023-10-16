@@ -12,6 +12,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
+                @if(session('success'))
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-3" role="alert">
+                        <strong class="font-bold">Success!</strong>
+                        <span class="block sm:inline">{{ session('success') }}</span>
+                    </div>
+                @endif
                     <form method="GET" action="{{ route('bookmarks.search') }}" class="mb-4">
                     @csrf
                         <div class="flex">
@@ -19,6 +25,7 @@
                             <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600">Search</button>
                         </div>
                     </form>
+  
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    @foreach($bookmarks as $book)
                     <div class="bg-white p-4 rounded shadow-md">
