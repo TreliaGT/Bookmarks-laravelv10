@@ -99,4 +99,17 @@ class BookmarkController extends Controller
 
         return view('dashboard', compact('bookmarks'));
     }
+
+    /**
+     * Destory!!
+     */
+    public function destroy($id) {
+        // Find the bookmark by its ID
+        $bookmark = Bookmark::findOrFail($id);
+    
+        // Delete the bookmark
+        $bookmark->delete();
+    
+        return redirect()->route('dashboard')->with('success', 'Bookmark deleted successfully');
+    }
 }

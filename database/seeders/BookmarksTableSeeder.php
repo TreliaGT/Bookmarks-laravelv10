@@ -45,4 +45,5 @@ class BookmarksTableSeeder extends Seeder
         ];
         DB::table('users')->insert($users);
     }
+
 }

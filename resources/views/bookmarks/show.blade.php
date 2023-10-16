@@ -13,10 +13,13 @@
                 <div class="bg-gray-100 p-4">
                         <ul class="flex tabs">
                             <li class="mr-2">
-                            <a href="#" class="bg-white hover:bg-gray-200 rounded-t-lg px-4 py-2 block">Details</a>
+                                <a href="#" class="bg-white hover:bg-gray-200 rounded-t-lg px-4 py-2 block">Details</a>
                             </li>
                             <li class="mr-2">
-                            <a href="#" class="bg-white hover:bg-gray-200 rounded-t-lg px-4 py-2 block">Edit</a>
+                                <a href="#" class="bg-white hover:bg-gray-200 rounded-t-lg px-4 py-2 block">Edit</a>
+                            </li>
+                            <li class="mr-2">
+                                <a href="#" class="bg-white hover:bg-gray-200 rounded-t-lg px-4 py-2 block">Delete</a>
                             </li>
                         </ul>
                         <div class="bg-white p-4 rounded-b-lg">
@@ -45,8 +48,15 @@
                             <div class="tab-content hidden">
                                 @include('bookmarks.edit')
                             </div>
-                        
-                            
+                            <!-- Tab 3 content -->
+                            <div class="tab-content hidden">
+                                <h2>Delete this Bookmark</h2>
+                                <form action="{{ route('bookmark.destroy', $bookmark->id) }}" method="POST">
+                                    @csrf
+                                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+
+                            </div>
                         </div>
                         </div>
 

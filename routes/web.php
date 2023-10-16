@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/bookmark/{slug}', [BookmarkController::class, 'show'])->name('bookmark.show');
     Route::post('/bookmark/{id}/edit',[BookmarkController::class, 'update'])->name('bookmark.edit');
+    Route::post('/bookmark/{id}/destroy',[BookmarkController::class, 'destroy'])->name('bookmark.destroy');
     Route::get('/bookmarks/search', [BookmarkController::class, 'search'])->name('bookmarks.search');
 
 
