@@ -40,6 +40,14 @@
                                 <textarea id="description" name="description"   class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" rows="4"> </textarea>
                             </div>
                             <div class="mb-4">
+                                <label for="tags" class="block text-gray-700 font-semibold mb-2">Tags</label>
+                               <select class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500" name="tags" id="tags">
+                                    <option value="Coding">Coding</option>
+                                    <option value="Ideas">Ideas</option>
+                                    <option value="Other">Other</option>
+                               </select>
+                            </div>
+                            <div class="mb-4">
                                 <label for="thumbnail" class="block text-gray-700 font-semibold mb-2">Thumbnail</label>
                                 <input type="text" id="thumbnail" name="thumbnail" placeholder="image.jpg"  value="" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:border-blue-500">
                             </div>

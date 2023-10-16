@@ -36,6 +36,7 @@ class BookmarkController extends Controller
             'slug' => 'required|string|max:255',
             'url' => 'required|url',
             'description' => 'nullable|string',
+            'tags' => 'required',
         ]);
 
         //find the bookmark
@@ -48,6 +49,14 @@ class BookmarkController extends Controller
             'description' => $request->input('description'),
             'thumbnail' => $request->input('thumbnail'),
         ]);
+
+        if($bookmark->tags){
+            foreach($bookmark->tags as $tag){
+                $bookmark->detachTag($tag->name);
+            }
+        }
+        $bookmark->attachTag($request->input('tags'));
+
         //redirect to main page with the success update
         return redirect()->route('bookmark.show', $bookmark->slug)->with('success', 'Bookmark updated successfully');
     }
@@ -69,6 +78,7 @@ class BookmarkController extends Controller
             'slug' => 'required|string|max:255',
             'url' => 'required|url',
             'description' => 'nullable|string',
+            'tags' => 'required',
         ]);
 
         // Create a new bookmark with user_id
@@ -83,6 +93,8 @@ class BookmarkController extends Controller
 
         // Save the bookmark to the database
         $bookmark->save();
+
+        $bookmark->attachTag($request->input('tags'));
 
         //redirect to main page with the success update
         return redirect()->route('dashboard')->with('success', 'Bookmark created successfully');
@@ -106,7 +118,12 @@ class BookmarkController extends Controller
     public function destroy($id) {
         // Find the bookmark by its ID
         $bookmark = Bookmark::findOrFail($id);
-    
+        
+        if($bookmark->tags){
+            foreach($bookmark->tags as $tag){
+                $bookmark->detachTag($tag->name);
+            }
+        }
         // Delete the bookmark
         $bookmark->delete();
     

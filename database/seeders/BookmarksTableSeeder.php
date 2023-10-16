@@ -2,18 +2,22 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Tags\Tag;
 
 class BookmarksTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
+
+        Tag::create(['name' => 'Coding']);
+        Tag::create(['name' => 'Ideas']);
+        Tag::create(['name' => 'Other']);
         $bookmarks = [
             [
                 'name' => 'Bookmark 1',
@@ -45,5 +49,4 @@ class BookmarksTableSeeder extends Seeder
         ];
         DB::table('users')->insert($users);
     }
-
 }

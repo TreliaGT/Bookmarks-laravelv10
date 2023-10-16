@@ -18,14 +18,15 @@
                         <span class="block sm:inline">{{ session('success') }}</span>
                     </div>
                 @endif
-                    <form method="GET" action="{{ route('bookmarks.search') }}" class="mb-4">
-                    @csrf
-                        <div class="flex">
-                            <input type="text" name="name" placeholder="Search by name" class="border rounded-l-md p-2">
-                            <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600">Search</button>
-                        </div>
-                    </form>
-  
+
+                <form method="GET" action="{{ route('bookmarks.search') }}" class="mb-4">
+                @csrf
+                    <div class="flex">
+                        <input type="text" name="name" placeholder="Search by name" class="border rounded-l-md p-2">
+                        <button type="submit" class="bg-blue-500 text-white p-2 rounded-r-md hover:bg-blue-600">Search</button>
+                    </div>
+                </form>
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                    @foreach($bookmarks as $book)
                     <div class="bg-white p-4 rounded shadow-md">
@@ -35,6 +36,13 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-semibold mb-2">{{$book->name}}</h3>
+                                <p>  
+                                    @if($book->tags)
+                                        @foreach($book->tags as $tags)
+                                            <a href="/bookmarks/tags/{{$tags->name}}">{{$tags->name}}</a> 
+                                        @endforeach
+                                    @endif
+                                </p>
                                 <a href="{{ $book->url }}" class="text-blue-500 hover:underline">The URL Link</a>
                             </div>
                         </a>

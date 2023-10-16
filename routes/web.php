@@ -34,7 +34,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/bookmark/{id}/destroy',[BookmarkController::class, 'destroy'])->name('bookmark.destroy');
     Route::get('/bookmarks/search', [BookmarkController::class, 'search'])->name('bookmarks.search');
 
-
 });
 
 require __DIR__.'/auth.php';

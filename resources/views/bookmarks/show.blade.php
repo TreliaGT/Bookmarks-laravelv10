@@ -44,6 +44,14 @@
                                                         <a href="{{ $bookmark->url }}" class="text-blue-500 hover:underline"> {{ $bookmark->url }}</a>
                                                     </div>
                                                     <div class="mb-4">
+                                                        <label class="block text-gray-700 font-semibold mb-2">Tags:</label>
+                                                        @if($bookmark->tags)
+                                                            @foreach($bookmark->tags as $tags)
+                                                                <a href="/bookmarks/tags/{{$tags->name}}">{{$tags->name}}</a> ,
+                                                            @endforeach
+                                                        @endif
+                                                    </div>
+                                                    <div class="mb-4">
                                                         <label class="block text-gray-700 font-semibold mb-2">Description:</label>
                                                         <p class="text-gray-900">{{$bookmark->description }}</p>
                                                     </div>
